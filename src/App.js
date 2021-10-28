@@ -10,7 +10,17 @@ function App() {
   const [center, setCenter] = useState([43.88, -72.7317]);
   const [disable, setDisable] = useState(false);
 
-  // All buttons besides start are disabled. On click start is disabled, other buttons are enabled.
+  function randoCord(lat, long) {
+    let maxLat = 45.005419;
+    let minLat = 42.730315;
+    let maxLong = -71.510225;
+    let minLong = -73.35218;
+    let latRange = maxLat - minLat + 1;
+    let longRange = maxLong - minLong + 1;
+    lat = Math.floor(Math.random() * LatRange) + minLat;
+    console.log(lat);
+    return;
+  }
 
   return (
     <div id="wrapper">
@@ -27,4 +37,5 @@ function App() {
   );
 }
 
+randoCord();
 export default App;
