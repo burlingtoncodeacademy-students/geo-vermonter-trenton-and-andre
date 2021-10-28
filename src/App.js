@@ -1,5 +1,8 @@
 import './App.css';
 import { useState } from 'react'
+import {StartButton} from './components/startButton'
+import {QuitButton} from './components/quitButton'
+import {GuessButton} from './components/guessButton'
 
 import Map from './components/Map'
 
@@ -10,6 +13,11 @@ function App() {
   return (
     <div>
       <Map center={center} />
+      <div>
+         <StartButton/>
+         <GuessButton/>
+         <QuitButton/>
+      </div>
     </div>
   );
 }
