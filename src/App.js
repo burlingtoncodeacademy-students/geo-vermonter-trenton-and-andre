@@ -21,21 +21,24 @@ function App() {
     let longRange = maxLong - minLong + 1;
     setLat = Math.random() * latRange + minLat;
     setLong = Math.random() * longRange + minLong;
-    console.log(setLat);
-    console.log(setLong);
-    return;
   }
+
+  console.log(lat);
+  console.log(long);
 
   return (
     <div id="wrapper">
       <Map center={center} />
       <div>
         {" "}
-        <button disabled={disable} onClick={() => setDisable(true)}>
+        <button
+          disabled={disable}
+          onClick={(() => setDisable(true), randoCord({ lat, long }))}
+        >
           START
         </button>{" "}
-        <button disabled={disable}>QUIT</button>
-        <button disabled={disable}>GUESS</button>
+        <button disabled={!disable}>QUIT</button>
+        <button disabled={!disable}>GUESS</button>
       </div>
     </div>
   );
