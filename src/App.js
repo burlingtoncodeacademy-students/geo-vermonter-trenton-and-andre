@@ -1,9 +1,5 @@
 import "./App.css";
 import { useState } from "react";
-import StartButton from "./components/startButton";
-import QuitButton from "./components/quitButton";
-import GuessButton from "./components/guessButton";
-
 import Map from "./components/Map";
 
 function App() {
@@ -12,7 +8,8 @@ function App() {
   const [long, setLong] = useState(-72.7317);
   const [lat, setLat] = useState(43.88);
 
-  function randoCord(lat, long) {
+  // All buttons besides start are disabled. On click start is disabled, other buttons are enabled.
+  function randomCord(lat, long) {
     let maxLat = 45.005419;
     let minLat = 42.730315;
     let maxLong = -71.510225;
@@ -22,6 +19,8 @@ function App() {
     setLat = Math.random() * latRange + minLat;
     setLong = Math.random() * longRange + minLong;
   }
+  console.log(lat);
+  console.log(long);
 
   console.log(lat);
   console.log(long);
