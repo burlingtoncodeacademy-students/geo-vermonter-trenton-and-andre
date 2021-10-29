@@ -6,27 +6,37 @@ import {
   Polyline,
 } from "react-leaflet";
 import borderData from "../data/border";
-import {useEffect} from `react`
-
+import {useEffect, useState} from "react"
+import { layerGroup , L } from "leaflet";
 // leafletPip.pointInLayer(point, layer L.GeoJSON, [first])
 
 
 
 function Map(props) {
+const [point, setPoint] = useState([props.lat, props.long])
+
   let vtOutline = borderData.geometry.coordinates[0].map((coords) => [
     coords[1],
     coords[0],
   ]);
 
+
+
   useEffect(() => {
+    
+   
     //turn border data into a L.geoJson
     //import random Lat and long data here 
     
 
-    //then set up leaflit pip to a vareble 
+    //then set up leaflet pip to a vareble 
     // set up and if else lodgic to check result 
-    //leaflit pip will return an array if the point is in the geo json the array will have the geo json in it. and the array will be empty if it is not in vermont 
+    //leaflet pip will return an array if the point is in the geo json the array will have the geo json in it. and the array will be empty if it is not in vermont 
 
+    // $.getJSON("./data/border.js",function(data){
+    //   // L.geoJson function is used to parse geojson file and load on to map
+    //   L.geoJson(data).addTo(newMap);
+    //   });
   }, [])
 
 
@@ -38,8 +48,8 @@ function Map(props) {
       zoom={8}
       scrollWheelZoom={false}
       doubleClickZoom={false}
-      zoomControl={false}
-      touchZoom={false}
+      zoomControl={true}
+      touchZoom={true}
       style={{ height: "600px", width: "600px" }}
     >
       <TileLayer
