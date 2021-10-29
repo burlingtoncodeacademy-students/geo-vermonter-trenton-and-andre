@@ -3,7 +3,7 @@ import { useState } from "react";
 import Map from "./components/Map";
 import borderData from "./data/border";
 import L from "leaflet";
-import leafletPip from "leaflet-Pip";
+import leafletPip from "leaflet-pip";
 
 function App() {
   //use states
@@ -17,9 +17,9 @@ function App() {
 
   // All buttons besides start are disabled. On click start is disabled, other buttons are enabled.
 
+  //max and min longitude and latitude of vermont
   function randomCords() {
-    //max and min longitude and latitude of vermont
-    let poly = L.geoJSON(borderData);
+    let poly = L.geoJson(borderData);
     let maxLat = 45.005419;
     let minLat = 42.730315;
     let maxLong = -71.510225;
@@ -35,13 +35,18 @@ function App() {
 
     let results = leafletPip.pointInLayer([newLong, newLat], poly);
     console.log(results);
-    return { newLat, newLong };
+
+    return { newLat, newLong, results };
   }
-  console.log(randomCords());
 
   let randoFunc = randomCords();
-  console.log(randoFunc.neLat);
+  while (randoFunc.results.length === 0) {
+    randoFunc = randomCords();
+  }
 
+  console.log(randomCords());
+
+  console.log(randoFunc.newLat);
   return (
     //wrapping flex box
     <div id="wrapper">
