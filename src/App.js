@@ -9,6 +9,8 @@ import Map from "./components/Map";
 function App() {
   const [center, setCenter] = useState([43.88, -72.7317]);
   const [disable, setDisable] = useState(false);
+  const [long, setLong] = useState(-72.7317);
+  const [lat, setLat] = useState(43.88);
 
   function randoCord(lat, long) {
     let maxLat = 45.005419;
@@ -17,8 +19,10 @@ function App() {
     let minLong = -73.35218;
     let latRange = maxLat - minLat + 1;
     let longRange = maxLong - minLong + 1;
-    lat = Math.floor(Math.random() * LatRange) + minLat;
-    console.log(lat);
+    setLat = Math.random() * latRange + minLat;
+    setLong = Math.random() * longRange + minLong;
+    console.log(setLat);
+    console.log(setLong);
     return;
   }
 
@@ -37,5 +41,4 @@ function App() {
   );
 }
 
-randoCord();
 export default App;
