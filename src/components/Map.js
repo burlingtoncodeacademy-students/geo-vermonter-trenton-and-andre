@@ -4,6 +4,7 @@ import {
   Polygon,
   Marker,
   Polyline,
+  useMap,
 } from "react-leaflet";
 import borderData from "../data/border";
 import { useEffect, useState } from "react";
@@ -21,7 +22,8 @@ function Map(props) {
 
   function zoomInOut(props) {
     let zoom = MapContainer.zoom;
-    return console.log(zoom);
+
+    console.log(MapContainer.zoom);
   }
   zoomInOut();
 
@@ -46,8 +48,8 @@ function Map(props) {
       zoom={8}
       scrollWheelZoom={false}
       doubleClickZoom={false}
-      zoomControl={true}
-      touchZoom={true}
+      zoomControl={false}
+      touchZoom={false}
       style={{ height: "600px", width: "600px" }}
     >
       <TileLayer
