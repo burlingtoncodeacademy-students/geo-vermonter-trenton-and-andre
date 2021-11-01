@@ -4,17 +4,15 @@ import Map from "./components/Map";
 import borderData from "./data/border";
 import L from "leaflet";
 import leafletPip from "leaflet-pip";
-
+import {styles} from "./styles/style"
 function App() {
   //use states
   //the use state to center the map
   const [center, setCenter] = useState([43.88, -72.7317]);
   //use state to disable the buttons
   const [disable, setDisable] = useState(false);
-  //use state for lat and long
-  // const [long, setLong] = useState(-72.7317);
-  // const [lat, setLat] = useState(43.88);
-
+  
+  const [zoom, setZoom] = useState(8);
   // All buttons besides start are disabled. On click start is disabled, other buttons are enabled.
 
   //max and min longitude and latitude of vermont
@@ -38,9 +36,15 @@ function App() {
 
     return { newLat, newLong, results };
   }
+  //   //turn border data into a L.geoJson
+  //   //import random Lat and long data here
+
+  //   //then set up leaflet pip to a vareble
+  //   // set up and if else lodgic to check result
+  //   //leaflet pip will return an array if the point is in the geo json the array will have the geo json in it. and the array will be empty if it is not in vermont
 
 
-  
+
   let randoFunc = randomCords();
 while(randoFunc.results.length === 0) {
     randoFunc = randomCords();
@@ -51,23 +55,24 @@ while(randoFunc.results.length === 0) {
   console.log(randoFunc.newLat);
   return (
     //wrapping flex box
-    <div id="wrapper">
+    <div style={styles.App.wrapper}>
       {/* the map that the game uses  */}
-      <Map center={center} />
-      <div>
+      <Map center={center} zoom={zoom}  />
+      <div style={styles.App.buttonBox}>
         {/* a start button that disbales after clicked */}
-        <button
+        <button style={styles.App.button}
           disabled={disable}
           onClick={() => {
             setDisable(true);
             setCenter([randoFunc.newLat, randoFunc.newLong]);
+            setZoom(18)
           }}
         >
           START
         </button>
         {/* a guess and quit button that are enabled on the click of start */}
-        <button disabled={!disable}>QUIT</button>
-        <button disabled={!disable}>GUESS</button>
+        <button style={styles.App.button} disabled={!disable}>QUIT</button>
+        <button style={styles.App.button}  disabled={!disable}>GUESS</button>
       </div>
     </div>
   );
