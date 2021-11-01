@@ -4,14 +4,14 @@ import Map from "./components/Map";
 import borderData from "./data/border";
 import L from "leaflet";
 import leafletPip from "leaflet-pip";
-import {styles} from "./styles/style"
+import { styles } from "./styles/style";
 function App() {
   //use states
   //the use state to center the map
   const [center, setCenter] = useState([43.88, -72.7317]);
   //use state to disable the buttons
   const [disable, setDisable] = useState(false);
-  
+
   const [zoom, setZoom] = useState(8);
   // All buttons besides start are disabled. On click start is disabled, other buttons are enabled.
 
@@ -43,10 +43,8 @@ function App() {
   //   // set up and if else lodgic to check result
   //   //leaflet pip will return an array if the point is in the geo json the array will have the geo json in it. and the array will be empty if it is not in vermont
 
-
-
   let randoFunc = randomCords();
-while(randoFunc.results.length === 0) {
+  while (randoFunc.results.length === 0) {
     randoFunc = randomCords();
   }
 
@@ -57,22 +55,30 @@ while(randoFunc.results.length === 0) {
     //wrapping flex box
     <div style={styles.App.wrapper}>
       {/* the map that the game uses  */}
-      <Map center={center} zoom={zoom}  />
+      <Map center={center} zoom={zoom} />
       <div style={styles.App.buttonBox}>
         {/* a start button that disbales after clicked */}
-        <button style={styles.App.button}
+        <button
+          style={styles.App.button}
+          //disableing the start
           disabled={disable}
           onClick={() => {
             setDisable(true);
+            //seting and centering the map with the random cords
             setCenter([randoFunc.newLat, randoFunc.newLong]);
-            setZoom(18)
+            //trying to set zoom but wont work
+            setZoom(18);
           }}
         >
           START
         </button>
         {/* a guess and quit button that are enabled on the click of start */}
-        <button style={styles.App.button} disabled={!disable}>QUIT</button>
-        <button style={styles.App.button}  disabled={!disable}>GUESS</button>
+        <button style={styles.App.button} disabled={!disable}>
+          QUIT
+        </button>
+        <button style={styles.App.button} disabled={!disable}>
+          GUESS
+        </button>
       </div>
     </div>
   );

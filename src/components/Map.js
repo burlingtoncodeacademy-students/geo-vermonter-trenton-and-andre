@@ -12,25 +12,10 @@ import { layerGroup, L } from "leaflet";
 // leafletPip.pointInLayer(point, layer L.GeoJSON, [first])
 
 function Map(props) {
-  
-
   let vtOutline = borderData.geometry.coordinates[0].map((coords) => [
     coords[1],
     coords[0],
   ]);
-
-  // function MapComponent() {
-  //   if (zoom === 8) {
-  //     setZoom(18);
-  //   }else {
-  //     setZoom(8)
-  //   }
-  //   return zoom
-  // }
-  // console.log(zoom);
-  // MapComponent()
-
-
 
   // useEffect(() => {
 
@@ -41,16 +26,14 @@ function Map(props) {
   //   // set up and if else lodgic to check result
   //   //leaflet pip will return an array if the point is in the geo json the array will have the geo json in it. and the array will be empty if it is not in vermont
 
-  // }, [])
-console.log(props.zoom)
   return (
     <MapContainer
       center={props.center}
       zoom={props.zoom}
       scrollWheelZoom={false}
       doubleClickZoom={false}
-      zoomControl={true}
-      touchZoom={true}
+      zoomControl={false}
+      touchZoom={false}
       style={{ height: "600px", width: "600px" }}
     >
       <TileLayer
